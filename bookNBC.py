@@ -3,47 +3,32 @@ import numpy as np
 
 
 
-train = np.loadtxt('iris.csv', delimiter=',', dtype = np.float32) # first column is class label
+#train => train values as a np array. The last column should be the class label.
+#test => an np array that you want to determine the class label for. This array should just be one row
+#numattributes => number of attributes in your thing
+#numclasses => the number of classes. For right now this should just be 2 because we're only doing romance and horror so far :P
+def bookNBC(train, test, numattributes, numclasses):
+    trainx = train[:, :numattributes]
+    trainy = train[:, [numattributes]]
 
-k = 0
-fold = 10
-numtest = int(train.shape[0] / fold)
+    testx = test[:, :numattributes]
 
+    likelihoodlist = []
 
-# np.random.shuffle(train)
+    for k in range(numclasses):
+        # P(Ck)
+        classprior = np.count_nonzero(trainy[:, 0] == k)
 
-# trainx = np.concatenate((train[0:numtest * k,:4],train[(numtest * k)+numtest:,:4]))
-# trainy = np.concatenate((train[0:numtest * k,[4]],train[(numtest * k)+numtest:,[4]]))
+        # P(x|Ck)
+        indeceswhereCk = np.argwhere(trainy == k)
+        rowswhereCk = indeceswhereCk[:, 0]  # this is an array that has the indices where the class is equal to k
 
-trainx = train[0:149,:4]
-trainy = train[0:149,[4]]
+        totallikelihood = 1
+        for index, x in enumerate(testx[0, :]):
+            xgivenCk = trainx[rowswhereCk, index]  # this is an array of the x values that are in the rows where the class is equal to k
+            likelihood = np.count_nonzero(xgivenCk == x)  # the amount of times that x is in xgivenCk
+            # print("likelihood:", likelihood)
+            totallikelihood = totallikelihood * likelihood
+        likelihoodlist.append(likelihood)
 
-testx = train[[149],:4]
-testy = train[[149],[4]]
-
-
-
-
-
-
-
-
-# P(Ck)
-classprior = np.count_nonzero(trainy[:,0] == 0)
-print(classprior)
-
-
-#P(x|Ck)
-indeceswhereCk = np.argwhere(trainy == 0)
-rowswhereCk = indeceswhereCk[:, 0]
-
-
-totallikelihood = 1
-for index, x in enumerate(testx[0,:]):
-    xgivenCk = trainx[rowswhereCk, index]
-    likelihood = np.count_nonzero(xgivenCk == x)
-    # print(x, "is in it:", np.count_nonzero(trainx[:50,index] == x))
-    print("likelihood:", likelihood)
-    totallikelihood = totallikelihood * likelihood
-
-print(totallikelihood)
+    print("predicted class:", np.argmax(np.asarray(likelihoodlist), axis=0))

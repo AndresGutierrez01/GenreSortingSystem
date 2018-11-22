@@ -1,4 +1,5 @@
 from parsebook import Book
+from bookNBC import bookNBC
 
 
 b = Book("Anna Karenin.txt")
