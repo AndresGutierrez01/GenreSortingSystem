@@ -10,24 +10,28 @@ def getData(loveBooksPath, horrorBooksPath):
 
     lovefiles = glob.glob(loveBooksPath)
     for file in lovefiles:
-        book = Book(file)
+        book = Book(file,"love")
         loveBooks.append(book)
 
     horrorfiles = glob.glob(horrorBooksPath)
     for file in horrorfiles:
-        book = Book(file)
+        book = Book(file,"horror")
         horrorBooks.append(book)
 
-    words = ["love", "adore", "kiss", "beloved", "happiness", "scary", "horror", "blood", "death", "creepy"]
+
+    words = ["rose", "man", "like", "miss", "love", "smiles","around","hell", "something", "horror", "blood", "saw"]
 
     loveValues = Book.get_counts(loveBooks, words)
-
     horrorValues = Book.get_counts(horrorBooks, words)
 
-    loveData = np.insert(loveValues, len(words), values=0, axis=1)
-    horrorData = np.insert(horrorValues, len(words), values=1, axis=1)
+    numattributes=len(words)
+
+    loveData = np.insert(loveValues, numattributes, values=0, axis=1)
+    horrorData = np.insert(horrorValues, numattributes, values=1, axis=1)
 
     data = []
     data = np.concatenate((loveData, horrorData), axis=0)
 
-    return data
+
+
+    return numattributes, data
