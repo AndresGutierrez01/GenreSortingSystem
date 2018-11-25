@@ -1,4 +1,4 @@
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 
 
@@ -11,6 +11,7 @@ def bookNBC(train, test, numattributes, numclasses):
     trainx = train[:, :numattributes]
     trainy = train[:, [numattributes]]
 
+    # testx = test
     testx = test[:, :numattributes]
 
     likelihoodlist = []
