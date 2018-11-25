@@ -4,7 +4,7 @@ from bookNBC import bookNBC
 
 
 
-train = np.loadtxt('iris.csv', delimiter=',', dtype = np.float32) # last column is class label
+train = np.loadtxt('Data/iris.csv', delimiter=',', dtype = np.float32) # last column is class label
 
 np.random.shuffle(train)
 
