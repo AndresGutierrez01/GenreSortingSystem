@@ -2,8 +2,8 @@ import nltk
 from nltk.corpus import stopwords
 
 class Book:
-	def __init__(self, name):
-		book = open("./BookFiles/" + name)
+	def __init__(self, name, genre):
+		book = open("./" + genre + " BOOKS/" + name)
 		raw = book.read()
 		words = nltk.word_tokenize(raw)
 		words = [word for word in words if word.isalpha()]
