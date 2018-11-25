@@ -84,6 +84,10 @@ words = ["love","anticipation","thing"]
 
 
 lovebooks = [AK, TSAF, EMMA, HHH, TROTN, SMIL, AFL, DQ, FTW, MAA, TC, TAI, TU, ACC, AMM, ARWAV, AOTI, DLL, IVAN, JG, MP, NAD, NAS, NDDP, SAS, AC, ALMBF, ADCL, BMMI, DSLA, EWMN, EZS, EZBG, FPIM, FPCB, KADMC, KWWSE, LSSF, LABT, MFIT, MCMS, MCFW, NAACL, RGFI, SLLT, SLT, VBML, WWBT]
+horrorbooks = [TGOH, ARC, AAEG, ANM, TD, VAUT, DPZA, HVTB, ISHS, EJ, SS, TK, CGSP, MPW, ASH, TTU, BEDT, FGV, OAH, MBS, MCO, PPV, RNB, SHHT]
+
+
+
 
 lovevalues = Book.get_counts(lovebooks, words)
 np_lovevalues = np.asarray(lovevalues)
@@ -95,8 +99,6 @@ np_lovevalues = np.hstack((np_lovevalues,np.zeros((len(lovebooks),1))))
 np.savetxt("Data/wordfreqs.csv", np_lovevalues, delimiter=",", fmt='%1.2f')
 
 
-
-horrorbooks = [TGOH, ARC, AAEG, ANM, TD, VAUT, DPZA, HVTB, ISHS, EJ, SS, TK, CGSP, MPW, ASH, TTU, BEDT, FGV, OAH, MBS, MCO, PPV, RNB, SHHT]
 
 horrorvalues = Book.get_counts(horrorbooks, words)
 np_horrorvalues = np.asarray(horrorvalues)
@@ -135,6 +137,32 @@ np_horrorratios = np.hstack((np_horrorratios,np.ones((len(horrorbooks),1))))
 #appends the horror values to the file
 file = open("Data/wordratios.csv","a")
 np.savetxt(file, np_horrorratios, delimiter=",", fmt='%1.2f')
+
+
+
+
+
+# thingyy = AK.get_freq_dist(10)
+# np.savetxt("Data/freqdist.csv", thingyy, delimiter=",", fmt='%s')
+# freqfile = open("Data/freqdist.csv","a")
+
+
+# freq_dist_list = np.empty(shape=[10,10])
+# print(freq_dist_list)
+word_freq_list = np.empty((1,10))
+for book in lovebooks:
+	word_list = book.get_freq_dist(10)
+	word_list = np.asarray([word_list])
+	# word_list = np.transpose(word_list)
+	word_freq_list = np.concatenate((word_freq_list,word_list))
+
+	print(word_list)
+	print(word_freq_list)
+	
+	# freq_dist_list = np.concatenate((freq_dist_list,word_list))
+	np.savetxt("Data/freqdist.csv", word_freq_list, delimiter=",", fmt='%s')
+
+
 
 
 
