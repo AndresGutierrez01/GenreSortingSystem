@@ -31,4 +31,6 @@ def bookNBC(train, test, numattributes, numclasses):
             totallikelihood = totallikelihood * likelihood
         likelihoodlist.append(likelihood)
 
-    print("predicted class:", np.argmax(np.asarray(likelihoodlist), axis=0))
+    # print("predicted class:", np.argmax(np.asarray(likelihoodlist), axis=0))
+    prediction = np.argmax(np.asarray(likelihoodlist), axis=0)
+    return prediction
