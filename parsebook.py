@@ -97,7 +97,7 @@ class Book:
 
         for word, freq in fdist.most_common(num):
             most_freq.append(word)
-            # print(word,":",freq)
+            print(word,":",freq)
         return most_freq
 
 
