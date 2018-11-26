@@ -90,14 +90,17 @@ class Book:
 
 
 
-    def get_freq_dist(self, num):
-        most_freq=[]
-        word_list = [word for word in self.text if word not in stopwords.words('english')]
-        fdist = nltk.FreqDist(word_list)
+    def get_freq_dist(self, num, newStopWords=[]):
+        stopwords_list = stopwords.words('english')
+        stopwords_list.extend(newStopWords)
+        # print("Stopwords:",stopwords_list)
+    
+        most_freq = []
+        word_list = [word for word in self.text if word not in stopwords_list]
 
+        fdist = nltk.FreqDist(word_list)
+        
         for word, freq in fdist.most_common(num):
             most_freq.append(word)
-            print(word,":",freq)
+            # print(word,":",freq)
         return most_freq
-
-

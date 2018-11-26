@@ -6,29 +6,12 @@ from sklearn.metrics import accuracy_score
 # from bookNBC import bookNBC
 
 
-words = ["love","anticipation","thing"]
-
-
-loveBooks = []
-horrorBooks = []
-
-loveBooksPath = './LOVE BOOKS/*.txt'
-horrorBooksPath = './HORROR BOOKS/*.txt'
-
-lovefiles = glob.glob(loveBooksPath)
-for file in lovefiles:
-    book = Book(file,"love")
-    loveBooks.append(book)
-
-horrorfiles = glob.glob(horrorBooksPath)
-for file in horrorfiles:
-    book = Book(file,"horror")
-    horrorBooks.append(book)
-
 
 data = np.loadtxt('Data/mostfreq.csv', delimiter=',', dtype="str")
 
-numAttributes = 20
+numAttributes = np.size(data,1) - 1
+
+
 
 
 accuracy=[]
