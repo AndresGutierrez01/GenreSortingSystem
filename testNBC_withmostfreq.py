@@ -35,7 +35,9 @@ for j in range(10):
         for j in range(len(test)):
             predict_tion = bookNBC(traind, test[[j],:numAttributes], numAttributes, 2)
             predicted.append(predict_tion)
-       
+            print("prediction:",predict_tion)
+            print("actual:",testy[j])
+            print("\n\n")
 
         accuracy.append(accuracy_score(testy, predicted))
 
@@ -51,9 +53,7 @@ plt.show()
 
 
 
-# print("prediction:",predict_tion)
-#             print("actual:",testy[j])
-#             print("\n\n")
+
 
 
 # for book in loveBooks[21:]:
