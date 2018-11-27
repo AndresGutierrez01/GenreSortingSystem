@@ -26,7 +26,6 @@ for file in horrorfiles:
 
 
 
-
 # Gets the most frequent words in the love books
 def get_love_most_freq(numattributes, common_words):
 	
@@ -87,16 +86,15 @@ def get_most_freq(numattributes, degree=1):
 	for i in range(degree):
 
 		love_words_list = get_love_most_freq(numattributes, common_words_list)
-
 		horror_words_list = get_horror_most_freq(numattributes, common_words_list)
 
 		common_words = list(set(love_words_list) & set(horror_words_list))
 
-		print("\n\n\nCommon Words Size run",i,":",len(common_words))
-
+		print("\n\n\nCommon Words Size (run",i,"):",len(common_words))
+		# print("\n\nCOMMON WORDS:")
 		for cw in common_words:
-		    print(cw,":","LOVE:",list(love_words_list).count(cw),"___HORROR:",list(horror_words_list).count(cw))
-		
+			print(cw,"=>","LOVE:",list(love_words_list).count(cw),",  HORROR:",list(horror_words_list).count(cw))
+
 		print("\n\n")
 		common_words_list.extend(common_words)
 		print("Common Words List:",common_words_list)

@@ -12,6 +12,26 @@ from getmostfreq import get_most_freq
 get_most_freq(20, degree=5)
 
 
+# loveBooksPath = './LOVE BOOKS/*.txt'
+# horrorBooksPath = './HORROR BOOKS/*.txt'
+
+
+# loveBooks = []
+# horrorBooks = []
+
+# lovefiles = glob.glob(loveBooksPath)
+# for file in lovefiles:
+#     book = Book(file,"love")
+#     loveBooks.append(book)
+
+# horrorfiles = glob.glob(horrorBooksPath)
+# for file in horrorfiles:
+#     book = Book(file,"horror")
+#     horrorBooks.append(book)
+
+
+# words = ["rose", "man", "like", "miss", "love", "smiles","around","hell", "something", "horror", "blood", "saw"]
+
 
 
 # lovevalues = Book.get_counts(loveBooks, words)

@@ -3,6 +3,7 @@ from parsebook import Book
 from bookNBC_withmostfreq import bookNBC
 import numpy as np
 from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
 # from bookNBC import bookNBC
 
 
@@ -15,7 +16,7 @@ numAttributes = np.size(data,1) - 1
 
 
 accuracy=[]
-k=4
+k=10
 foldsize = int(len(data)/k)
 for j in range(10):
     np.random.shuffle(data)
@@ -30,15 +31,11 @@ for j in range(10):
 
         testy = data[a:b, [-1]].astype(int)
 
-
+        print("\n\n_____________FOLD:",i,"________________\n")
         for j in range(len(test)):
-            # print("predicted class:", bookNBC(traind, test[[j],:10], 10, 2))
-            # print(test[[j],10])
             predict_tion = bookNBC(traind, test[[j],:numAttributes], numAttributes, 2)
             predicted.append(predict_tion)
-            # print("prediction:",predict_tion)
-            # print("actual:",testy[j])
-
+       
 
         accuracy.append(accuracy_score(testy, predicted))
 
@@ -47,10 +44,16 @@ for i in range(len(accuracy)):
 
 
 print("Average accuracy:",sum(accuracy) / len(accuracy))
-# plt.plot(accuracy,'ro')
-# plt.ylabel('Accuracy')
-# plt.show()
+plt.plot(accuracy,'ro')
+plt.ylabel('Accuracy')
+plt.show()
 
+
+
+
+# print("prediction:",predict_tion)
+#             print("actual:",testy[j])
+#             print("\n\n")
 
 
 # for book in loveBooks[21:]:

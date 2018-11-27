@@ -31,7 +31,7 @@ def bookNBC(train, test, numattributes, numclasses):
             xgivenCk = trainx[rowswhereCk, :]  # this is an array of the x values that are in the rows where the class is equal to k
             # print(xgivenCk)
             likelihood = np.count_nonzero(xgivenCk == x)  # the amount of times that x is in xgivenCk
-            # print("word:",x,"likelihood in",k,":", likelihood)
+            print("word:",x,"likelihood in",k,":", likelihood)
             totallikelihood = totallikelihood + likelihood
         likelihoodlist.append(totallikelihood)
 
